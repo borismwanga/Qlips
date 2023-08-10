@@ -3,13 +3,11 @@
 const mongoose = require('mongoose');
 
 const videoSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  url: { type: String, required: true },
-  uploadDate: { type: Date, required: true },
-  deleteDate: { type: Date, required: true },
-  viewCount: { type: Number, default: 0 },
+  title: String,
+  url: String, // Store the Cloudinary URL
+  uploadDate: Date,
+  deleteDate: Date,
+  viewCount: Number,
 });
 
-const Video = mongoose.model('Video', videoSchema);
-
-module.exports = Video;
+module.exports = mongoose.model('Video', videoSchema);
