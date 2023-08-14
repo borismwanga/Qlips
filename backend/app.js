@@ -4,13 +4,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const apiRoutes = require('./routes/routes');
-const deleteScheduler = require('./utils/deleteScheduler');
+// const deleteScheduler = require('./utils/deleteScheduler');
 
 const app = express();
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/qlips', {

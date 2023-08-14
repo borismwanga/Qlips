@@ -1,18 +1,16 @@
-
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-// eslint-disable-next-line react/prop-types
-export default function VideoPage({ match }){
-  // eslint-disable-next-line react/prop-types
-  const videoId = match.params.id;
+export default function VideoPage() {
+  const { id } = useParams();
   const [video, setVideo] = useState(null);
 
   useEffect(() => {
     const fetchVideoDetails = async () => {
       try {
-        const response = await axios.get(`/api/videos/${videoId}`);
+        const response = await axios.get(`http://127.0.0.1:3000/api/videos/${id}`);
         setVideo(response.data.video);
       } catch (error) {
         console.error('Error fetching video details:', error);
@@ -20,11 +18,11 @@ export default function VideoPage({ match }){
     };
 
     fetchVideoDetails();
-  }, [videoId]);
+  }, [id]);
 
   const handleIncrementView = async () => {
     try {
-      await axios.patch(`/api/videos/${videoId}/increment-view`);
+      await axios.patch(`http://127.0.0.1:3000/api/videos/${id}/increment-view`);
     } catch (error) {
       console.error('Error incrementing view count:', error);
     }
