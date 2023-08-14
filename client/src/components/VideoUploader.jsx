@@ -1,10 +1,13 @@
-/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export default function VideoUploader() {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+  const history = useHistory();
 
   const handleFileChange = event => {
     const selectedFile = event.target.files[0];
@@ -25,6 +28,11 @@ export default function VideoUploader() {
     return titleWithoutExtension;
   };
 
+  const handleDragOver = event => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy';
+  };
+  
   const handleDrop = event => {
     event.preventDefault();
     const droppedFile = event.dataTransfer.files[0];
@@ -40,30 +48,36 @@ export default function VideoUploader() {
     }
   };
 
-  const handleDragOver = event => {
-    event.preventDefault();
-  };
-
   const handleUpload = async () => {
     if (!file) {
       alert('Please select a video file to upload.');
       return;
     }
-
+  
+    setIsUploading(true);
+  
     const formData = new FormData();
     formData.append('file', file);
     formData.append('title', title);
-
+  
     try {
       const response = await axios.post('http://127.0.0.1:3000/api/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
-
-      console.log('Video uploaded:', response.data.video);
+  
+      console.log('Upload response:', response);
+  
+      if (response.status === 201) {
+        console.log('Redirecting to video page...');
+        history.push(`/videoPage/${response.data.video._id}`);
+      }
     } catch (error) {
       console.error('Error uploading video:', error);
     }
+  
+    setIsUploading(false);
   };
+  
 
   return (
     <div>
@@ -101,7 +115,12 @@ export default function VideoUploader() {
         value={title}
         onChange={event => setTitle(event.target.value)}
       />
-      <button onClick={handleUpload}>Upload</button>
+      <button
+        disabled={isUploading}
+        onClick={handleUpload}
+      >
+        {isUploading ? 'Uploading...' : 'Upload'}
+      </button>
     </div>
   );
 }
