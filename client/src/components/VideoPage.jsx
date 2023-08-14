@@ -22,7 +22,7 @@ export default function VideoPage() {
 
     const hoverTimeout = setTimeout(() => {
       setIsVideoHovered(true);
-    }, 5000);
+    }, 3000);
 
     return () => clearTimeout(hoverTimeout); // Clear the timeout on unmount
 

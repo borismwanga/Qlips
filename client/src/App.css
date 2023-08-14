@@ -1,16 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200;10..48,300;10..48,400;10..48,500;10..48,600;10..48,700;10..48,800&family=Lora&display=swap');
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-padding: 0;
-}
-:root{
-    --dark-color: #111111;
-    --light-color: #fff;
-}
 
 #root {
   background: var(--dark-color);
@@ -18,10 +6,7 @@ padding: 0;
   height: 100vh;
   color: var(--dark-color)
 }
-body{
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-weight: 700;
-}
+
 /*video and video wrapper*/
 .container {
   padding-top: 25px;
@@ -93,7 +78,13 @@ video{
   > p {
       font-size: 15px !important;
       font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 5px;
   }
+}
+.ptby .title{
+  font-size: 15px;
 }
 
 .video-hover{
@@ -107,4 +98,43 @@ video{
   'wght' 400,
   'GRAD' 0,
   'opsz' 48
+}
+
+/*mobile*/
+
+@media (max-width: 815px) {
+  /* Add your mobile-specific CSS styles here */
+  /* These styles will only apply when the screen width is 767px or less */
+  .container{
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+}
+  .container > .video-wrapper {
+      /* Width of the centered element */
+     width: calc(100% - 50px); /* (50px from left + 50px from right) */
+ }
+ .ptby{
+      height: 50px;
+  }
+  .ptby .title{
+    font-size: 11px;
+  }
+  .ptby .info{
+    display: flex;
+    > p {
+        font-size: 11px !important;
+        font-weight: normal;
+    }
+  }
+  .material-symbols-outlined {
+    font-size: 15px !important;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+  }
 }
