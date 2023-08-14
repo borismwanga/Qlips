@@ -53,7 +53,10 @@ exports.getVideoById = async (req, res) => {
     if (!video) {
       return res.status(404).json({ message: 'Video not found.' });
     }
-
+    // Increment the view count
+    video.viewCount++;
+    await video.save();
+    
     res.status(200).json({ video });
   } catch (error) {
     console.error('Error getting video by ID:', error);
@@ -72,5 +75,23 @@ exports.incrementViewCount = async (req, res) => {
   } catch (error) {
     console.error('Error updating view count:', error);
     res.status(500).json({ message: 'Error updating view count.' });
+  }
+};
+
+// video views increment
+exports.incrementViewCount = async (req, res) => {
+  try {
+    const video = await Video.findById(req.params.id);
+    if (!video) {
+      return res.status(404).json({ message: 'Video not found' });
+    }
+
+    video.viewCount += 1;
+    await video.save();
+
+    res.status(200).json({ message: 'View count incremented successfully' });
+  } catch (error) {
+    console.error('Error incrementing view count:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 };
