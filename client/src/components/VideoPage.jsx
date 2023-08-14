@@ -28,12 +28,43 @@ export default function VideoPage() {
 
   }, [id]);
 
-  const handleIncrementView = async () => {
-    try {
-      await axios.patch(`http://127.0.0.1:3000/api/videos/${id}/increment-view`);
-    } catch (error) {
-      console.error('Error incrementing view count:', error);
+  // const handleIncrementView = async () => {
+  //   try {
+  //     await axios.patch(`http://127.0.0.1:3000/api/videos/${id}/increment-view`);
+  //   } catch (error) {
+  //     console.error('Error incrementing view count:', error);
+  //   }
+  // };
+
+  const formatUploadDate = uploadDate => {
+    const now = new Date();
+    const uploadDateTime = new Date(uploadDate);
+    const timeDiff = now - uploadDateTime;
+    const minute = 60 * 1000;
+    const hour = 60 * minute;
+    const day = 24 * hour;
+    const year = 365 * day;
+  
+    if (timeDiff < minute) {
+      return `${Math.floor(timeDiff / 1000)} s ago`;
+    } else if (timeDiff < hour) {
+      return `${Math.floor(timeDiff / minute)} m ago`;
+    } else if (timeDiff < day) {
+      return `${Math.floor(timeDiff / hour)} h ago`;
+    } else if (timeDiff < year) {
+      return `${Math.floor(timeDiff / day)} d ago`;
+    } else {
+      return `${Math.floor(timeDiff / year)} y ago`;
     }
+  };
+
+  const copyToClipboard = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard.writeText(currentURL).then(() => {
+      alert('Link copied to clipboard!');
+    }).catch(error => {
+      console.error('Error copying link to clipboard:', error);
+    });
   };
 
   return (
@@ -51,17 +82,36 @@ export default function VideoPage() {
             </video>
 
             <div className={`ptby ${isVideoHovered ? 'hover' : ''}`}>
-              <span className="title">{video.title}</span>
-              <span className="info">
-                <p>
-                  <i className="fa-regular fa-eye"></i> {video.viewCount}
-                </p>
-                <p>
-                  <i className="fa-regular fa-clock"></i> 3 hours ago
-                </p>
-              </span>
+              <div className='ptbly-left'>
+                <span className="title">
+                  {video.title}
+                  </span>
+                <span className="info">
+                  {/* <p>
+                    <span className="material-symbols-outlined">
+                      visibility
+                    </span>
+                    {video.viewCount}
+                  </p> */}
+                  
+                  <p>
+                    <span className="material-symbols-outlined">
+                      schedule
+                    </span>
+                      {formatUploadDate(video.uploadDate)}
+                  </p>
+                </span>
+              </div>
+              <div className='ptby-right'>
+                <button onClick={copyToClipboard}> 
+                  <span className="material-symbols-outlined">
+                    link
+                  </span> 
+                  COPY LINK
+                </button>
+              </div>
+              
             </div>
-            {/* <button onClick={handleIncrementView}>Increment View</button> */}
           </div>
         </div>
       ) : (
