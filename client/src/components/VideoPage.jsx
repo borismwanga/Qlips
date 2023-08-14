@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 export default function VideoPage() {
   const { id } = useParams();
   const [video, setVideo] = useState(null);
+  const [isVideoHovered, setIsVideoHovered] = useState(false);
 
   useEffect(() => {
     const fetchVideoDetails = async () => {
@@ -18,6 +19,13 @@ export default function VideoPage() {
     };
 
     fetchVideoDetails();
+
+    const hoverTimeout = setTimeout(() => {
+      setIsVideoHovered(true);
+    }, 5000);
+
+    return () => clearTimeout(hoverTimeout); // Clear the timeout on unmount
+
   }, [id]);
 
   const handleIncrementView = async () => {
@@ -31,14 +39,30 @@ export default function VideoPage() {
   return (
     <div>
       {video ? (
-        <div>
-          <h2>{video.title}</h2>
-          <video controls>
-            <source src={video.url} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          <p>Views: {video.viewCount}</p>
-          <button onClick={handleIncrementView}>Increment View</button>
+        <div className={`container ${isVideoHovered ? 'hover' : ''}`}>
+          <div
+            className={`video-wrapper ${isVideoHovered ? '' : 'video-hover'}`}
+            onMouseEnter={() => setIsVideoHovered(true)}
+            onMouseLeave={() => setIsVideoHovered(false)}
+          >
+            <video className={`video ${isVideoHovered ? '' : 'video-hover'}`} controls>
+              <source src={video.url} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            <div className={`ptby ${isVideoHovered ? 'hover' : ''}`}>
+              <span className="title">{video.title}</span>
+              <span className="info">
+                <p>
+                  <i className="fa-regular fa-eye"></i> {video.viewCount}
+                </p>
+                <p>
+                  <i className="fa-regular fa-clock"></i> 3 hours ago
+                </p>
+              </span>
+            </div>
+            {/* <button onClick={handleIncrementView}>Increment View</button> */}
+          </div>
         </div>
       ) : (
         <p>Loading...</p>
@@ -46,4 +70,3 @@ export default function VideoPage() {
     </div>
   );
 }
-
