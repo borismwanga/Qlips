@@ -3,13 +3,14 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import VideoUploader from './components/VideoUploader';
 import VideoPage from './components/VideoPage';
+import './App.css';
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route path="/" exact component={VideoUploader} />
-        <Route path="/videoPage/:id" component={VideoPage} />
+        <Route path="/v/:id" component={VideoPage} />
       </Switch>
     </Router>
   );
