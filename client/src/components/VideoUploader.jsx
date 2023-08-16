@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import Footer from './Footer';
+
 
 export default function VideoUploader() {
   const [file, setFile] = useState(null);
@@ -80,47 +82,51 @@ export default function VideoUploader() {
   
 
   return (
-    <div>
+    <div className='upload'>
       <h2>Upload a Video</h2>
-      <div
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        style={{
-          border: '2px dashed #cccccc',
-          borderRadius: '4px',
-          padding: '20px',
-          textAlign: 'center',
-          cursor: 'pointer',
-        }}
-      >
-        {file ? (
-          <p>Video: {file.name}</p>
-        ) : (
-          <p>Drag your video here or click to select a file</p>
-        )}
-      </div>
-      {/* Use a label to wrap the input */}
-      <label htmlFor="fileInput">Click here to select a file
-        <input
-          type="file"
-          id="fileInput"
-          style={{ display: 'none' }}
-          accept="video/*"
-          onChange={handleFileChange}
-        />
+
+      <div className='upload-area'>
+        <div
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          className='drag-drop'
+        >
+          {file ? (
+            <p>Video: {file.name}</p>
+          ) : (
+            <p>Drag your video here</p>
+          )}
+        </div>
+        <label className='click-to' htmlFor="fileInput">
+            Click here to select a file
+          <input
+            type="file"
+            id="fileInput"
+            style={{ display: 'none' }}
+            accept="video/*"
+            onChange={handleFileChange}
+          />
       </label>
-      <input
-        type="text"
-        placeholder="Video Title"
-        value={title}
-        onChange={event => setTitle(event.target.value)}
-      />
-      <button
-        disabled={isUploading}
-        onClick={handleUpload}
-      >
-        {isUploading ? 'Uploading...' : 'Upload'}
-      </button>
+
+      </div>
+      <div className='upl'>
+        <input
+          type="text"
+          placeholder="Video Title"
+          value={title}
+          className='video-title'
+          onChange={event => setTitle(event.target.value)}
+        />
+        <button
+          disabled={isUploading}
+          onClick={handleUpload}
+        >
+          {isUploading ? 'Uploading...' : 'Upload'}
+        </button>
+
+      </div>
+      <Footer />
     </div>
+    
   );
 }
