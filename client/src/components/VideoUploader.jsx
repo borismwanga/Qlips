@@ -86,29 +86,28 @@ export default function VideoUploader() {
       <h2>Upload a Video</h2>
 
       <div className='upload-area'>
-        <div
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-          className='drag-drop'
-        >
-          {file ? (
+    <div
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onClick={() => document.getElementById("fileInput").click()}
+        className='drag-drop'
+    >
+        {file ? (
             <p>Video: {file.name}</p>
-          ) : (
-            <p>Drag your video here</p>
-          )}
-        </div>
-        <label className='click-to' htmlFor="fileInput">
-            Click here to select a file
-          <input
+        ) : (
+            <p>Drag your video here or <span className="click-to-text">Click here to select a file</span></p>
+        )}
+
+        <input
             type="file"
             id="fileInput"
             style={{ display: 'none' }}
             accept="video/*"
             onChange={handleFileChange}
-          />
-      </label>
+        />
+    </div>
+</div>
 
-      </div>
       <div className='upl'>
         <input
           type="text"
