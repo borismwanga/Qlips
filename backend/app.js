@@ -1,10 +1,10 @@
 // backend/app.js
 
+require('./schedulers/videoCleanup');
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const apiRoutes = require('./routes/routes');
-// const deleteScheduler = require('./utils/deleteScheduler');
 
 const app = express();
 
