@@ -71,7 +71,7 @@ export default function VideoUploader() {
   
       if (response.status === 201) {
         console.log('Redirecting to video page...');
-        history.push(`/videoPage/${response.data.video._id}`);
+        history.push(`/v/${response.data.video._id}`);
       }
     } catch (error) {
       console.error('Error uploading video:', error);

@@ -8,21 +8,25 @@ exports.uploadVideo = async (req, res) => {
   try {
     if (req.file) {
       const { title } = req.body;
-      const result = await cloudinary.uploader.upload(req.file.path, {
-        resource_type: 'video',
-      });
+      const result = await cloudinary.uploader.upload_stream(
+        { resource_type: 'video' },
+        (error, result) => {
+          if (error) throw error;
 
-      const newVideo = new Video({
-        title,
-        url: result.secure_url,
-        uploadDate: new Date(),
-        deleteDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
-        viewCount: 0,
-      });
+          const newVideo = new Video({
+            title,
+            url: result.secure_url,
+            uploadDate: new Date(),
+            deleteDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+            viewCount: 0,
+          });
 
-      await newVideo.save();
+          newVideo.save()
+            .then(video => res.status(201).json({ message: 'Video uploaded successfully!', video }))
+            .catch(err => { throw err; });
+        }
+      ).end(req.file.buffer);
 
-      res.status(201).json({ message: 'Video uploaded successfully!', video: newVideo });
     } else {
       throw new Error('No file uploaded');
     }
@@ -31,6 +35,7 @@ exports.uploadVideo = async (req, res) => {
     res.status(500).json({ message: 'Error uploading video.' });
   }
 };
+
 
 // Controller for getting all videos
 exports.getAllVideos = async (req, res) => {

@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import ReactPlayer from 'react-player'
+
 
 
 export default function VideoPage() {
@@ -77,10 +79,22 @@ export default function VideoPage() {
             onMouseEnter={() => setIsVideoHovered(true)}
             onMouseLeave={() => setIsVideoHovered(false)}
           >
-            <video className={`video ${isVideoHovered ? '' : 'video-hover'}`} controls>
+            {/* <video className={`video ${isVideoHovered ? '' : 'video-hover'}`} controls>
               <source src={video.url} type="video/mp4" />
               Your browser does not support the video tag.
-            </video>
+            </video> */}
+            <ReactPlayer 
+              className={`video ${isVideoHovered ? '' : 'video-hover'}`}
+              url={video.url} 
+              controls={{
+                playButton: false,
+                muteButton: false,
+                volumeSlider: false,
+                fullScreenButton: false,
+              }}
+            
+            />
+
 
             <div className={`ptby ${isVideoHovered ? 'hover' : ''}`}>
               <div className='ptbly-left'>
