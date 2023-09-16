@@ -11,17 +11,20 @@
     "host": "vite --host"
   },
   "dependencies": {
+    "@vidstack/react": "^0.6.13",
     "axios": "^1.4.0",
     "jquery": "^3.7.0",
     "player.js": "^0.1.0",
     "react": "^18.2.0",
+    "react-alert-template-basic": "^1.0.2",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-external-link": "^2.2.0",
     "react-player": "^2.12.0",
     "react-router": "^6.15.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "vidstack": "^0.6.13"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
