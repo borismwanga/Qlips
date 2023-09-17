@@ -86,44 +86,44 @@ export default function VideoUploader() {
   
 
   return (
-    <div className='upload'>
-      <h2>Upload a Video</h2>
+    <div className='flex item-center flex-col w-1/4	p-0.5 gap-2.5	'>
 
-      <div className='upload-area'>
-    <div
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onClick={() => document.getElementById("fileInput").click()}
-        className='drag-drop'
-    >
-        {file ? (
-            <p>Video: {file.name}</p>
-        ) : (
-            <p>Drag your video here or <span className="click-to-text">Click here to select a file</span></p>
-        )}
+      <div className='border-dotted	border-2 rounded-md	p-10 break-words text-center	w-80	h-40 flex items-center justify-center overflow-hidden	'>
+        <div
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onClick={() => document.getElementById("fileInput").click()}
+            className='drag-drop'
+        >
+            {file ? (
+                <p>Video: {file.name}</p>
+            ) : (
+                <p>Drag your video here or <span className="click-to-text" >Click here to select a file</span></p>
+            )}
 
-        <input
-            type="file"
-            id="fileInput"
-            style={{ display: 'none' }}
-            accept="video/*"
-            onChange={handleFileChange}
-        />
+            <input
+                type="file"
+                id="fileInput"
+                style={{ display: 'none' }}
+                accept="video/*"
+                onChange={handleFileChange}
+            />
     </div>
 </div>
 
-      <div className='upl'>
-        <input
+      <div className='w-80 flex justify-center items-center'>
+        {/* <input
           type="text"
           placeholder="Video Title"
           value={title}
           className='video-title'
           onChange={event => setTitle(event.target.value)}
-        />
+        /> */}
         {showButton && 
           <button
             disabled={isUploading}
             onClick={handleUpload}
+            className='rounded-md bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline border-2'
           >
             {isUploading ? 'Uploading...' : 'Upload'}
           </button>
