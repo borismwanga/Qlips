@@ -5,11 +5,12 @@ import { useHistory } from 'react-router-dom';
 import Footer from './Footer';
 
 
-
 export default function VideoUploader() {
   const [file, setFile] = useState(null);
   const [title, setTitle] = useState('');
   const [isUploading, setIsUploading] = useState(false);
+  // show and hide button
+  const [showButton, setShowButton] = useState(false);
   const history = useHistory();
 
   const handleFileChange = event => {
@@ -18,6 +19,7 @@ export default function VideoUploader() {
       if (selectedFile.type.includes('video')) {
         setFile(selectedFile);
         setTitle(getTitleFromFileName(selectedFile.name));
+        setShowButton(!showButton)
       } else {
         setFile(null);
         setTitle('');
@@ -118,12 +120,14 @@ export default function VideoUploader() {
           className='video-title'
           onChange={event => setTitle(event.target.value)}
         />
-        <button
-          disabled={isUploading}
-          onClick={handleUpload}
-        >
-          {isUploading ? 'Uploading...' : 'Upload'}
-        </button>
+        {showButton && 
+          <button
+            disabled={isUploading}
+            onClick={handleUpload}
+          >
+            {isUploading ? 'Uploading...' : 'Upload'}
+          </button>
+        }
 
       </div>
       <Footer />
