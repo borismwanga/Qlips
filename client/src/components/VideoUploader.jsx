@@ -86,7 +86,7 @@ export default function VideoUploader() {
   
 
   return (
-    <div className='flex item-center flex-col w-1/4	p-0.5 gap-2.5	'>
+    <div className='flex items-center flex-col w-1/4	p-0.5 gap-2.5	'>
 
       <div className='border-dotted	border-2 rounded-md	p-10 break-words text-center	w-80	h-40 flex items-center justify-center overflow-hidden	'>
         <div

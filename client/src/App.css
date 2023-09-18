@@ -1,4 +1,4 @@
 
 .footer {
-  @apply bottom-0 absolute py-4 text-center flex items-center justify-center ;
+  @apply bottom-0 absolute py-4 text-center flex items-center justify-center w-full left-0;
 }
