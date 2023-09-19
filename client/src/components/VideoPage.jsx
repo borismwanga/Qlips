@@ -78,16 +78,13 @@ export default function VideoPage() {
       {video ? (
         <div className={`container ${isVideoHovered ? 'hover' : ''}`}>
           <div
-            className={`video-wrapper ${isVideoHovered ? '' : 'video-hover'}`}
-            onMouseEnter={() => setIsVideoHovered(true)}
-            onMouseLeave={() => setIsVideoHovered(false)}
           >
             {/* <video className={`video ${isVideoHovered ? '' : 'video-hover'}`} controls>
               <source src={video.url} type="video/mp4" />
               Your browser does not support the video tag.
             </video> */}
             <ReactPlayer 
-              className="aspect-ratio aspect-w-16 aspect-h-9"
+              className=''
               url={video.url} 
               controls={{
                 playButton: false,

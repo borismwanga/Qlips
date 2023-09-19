@@ -1,4 +1,7 @@
 
 .footer {
-  @apply bottom-0 absolute py-4 text-center flex items-center justify-center w-full left-0;
+  @apply bottom-0 absolute py-4 text-center flex items-center justify-center w-full left-0 gap-5;
+}
+video{
+  @apply md:w-4/5;
 }
