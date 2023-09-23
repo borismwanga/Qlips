@@ -2,11 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-// import ReactPlayer from 'react-player'
+import ReactPlayer from 'react-player'
 import 'vidstack/styles/defaults.css';
 import 'vidstack/styles/community-skin/video.css';
 
-import { MediaCommunitySkin, MediaOutlet, MediaPlayer, MediaPoster } from '@vidstack/react';
 
 
 
@@ -79,16 +78,13 @@ export default function VideoPage() {
       {video ? (
         <div className={`container ${isVideoHovered ? 'hover' : ''}`}>
           <div
-            className={`video-wrapper ${isVideoHovered ? '' : 'video-hover'}`}
-            onMouseEnter={() => setIsVideoHovered(true)}
-            onMouseLeave={() => setIsVideoHovered(false)}
           >
             {/* <video className={`video ${isVideoHovered ? '' : 'video-hover'}`} controls>
               <source src={video.url} type="video/mp4" />
               Your browser does not support the video tag.
             </video> */}
-            {/* <ReactPlayer 
-              className={`video ${isVideoHovered ? '' : 'video-hover'}`}
+            <ReactPlayer 
+              className=''
               url={video.url} 
               controls={{
                 playButton: false,
@@ -97,23 +93,7 @@ export default function VideoPage() {
                 fullScreenButton: false,
               }}
             
-            /> */}
-
-<MediaPlayer
-  title= {video.title}
-  src= {video.url} 
-  aspectRatio={16 / 9}
-  crossorigin=""
-  autoplay
->
-  <MediaOutlet>
-    
-  </MediaOutlet>
-  <MediaCommunitySkin />
-</MediaPlayer>
-
-
-
+            />
             <div className={`ptby ${isVideoHovered ? 'hover' : ''}`}>
               <div className='ptbly-left'>
                 <span className="title">
