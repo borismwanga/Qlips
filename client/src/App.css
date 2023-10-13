@@ -1,4 +1,10 @@
-
+.logo{
+  font-family: 'Teta Teta Trial', sans-serif;
+  @apply absolute top-0 left-0 px-3 text-white;
+  > h1 {
+    @apply text-5xl;
+  }
+}
 .footer {
   @apply bottom-0 absolute py-4 text-center flex items-center justify-center w-full left-0 gap-5;
 }

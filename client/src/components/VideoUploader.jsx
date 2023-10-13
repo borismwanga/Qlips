@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import Footer from './Footer';
 
 
 export default function VideoUploader() {
@@ -19,7 +18,7 @@ export default function VideoUploader() {
       if (selectedFile.type.includes('video')) {
         setFile(selectedFile);
         setTitle(getTitleFromFileName(selectedFile.name));
-        setShowButton(!showButton)
+        setShowButton(true)
       } else {
         setFile(null);
         setTitle('');
@@ -88,12 +87,12 @@ export default function VideoUploader() {
   return (
     <div className='flex items-center flex-col w-1/4	p-0.5 gap-2.5	'>
 
-      <div className='border-dotted	border-2 rounded-md	p-10 break-words text-center	w-80	h-40 flex items-center justify-center overflow-hidden	'>
+      <div className='border-dotted	border-2 border-white rounded	p-10 break-words text-center	w-80	h-40 flex items-center justify-center overflow-hidden	'>
         <div
             onDrop={handleDrop}
             onDragOver={handleDragOver}
             onClick={() => document.getElementById("fileInput").click()}
-            className='drag-drop'
+            className='drag-drop hover:text-gray-600'
         >
             {file ? (
                 <p>Video: {file.name}</p>
@@ -108,8 +107,8 @@ export default function VideoUploader() {
                 accept="video/*"
                 onChange={handleFileChange}
             />
-    </div>
-</div>
+        </div>
+      </div>
 
       <div className='w-80 flex justify-center items-center'>
         {/* <input
@@ -130,7 +129,6 @@ export default function VideoUploader() {
         }
 
       </div>
-      <Footer />
     </div>
     
   );

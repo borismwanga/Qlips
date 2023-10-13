@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Teta Teta Trial';
+    src: url('Teta-TetaTrial.eot');
+    src: url('Teta-TetaTrial.eot?#iefix') format('embedded-opentype'),
+        url('Teta-TetaTrial.woff2') format('woff2'),
+        url('Teta-TetaTrial.woff') format('woff'),
+        url('Teta-TetaTrial.ttf') format('truetype'),
+        url('Teta-TetaTrial.svg#Teta-TetaTrial') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
