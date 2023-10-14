@@ -77,14 +77,9 @@ export default function VideoPage() {
     <div>
       {video ? (
         <div className={`container ${isVideoHovered ? 'hover' : ''}`}>
-          <div
-          >
-            {/* <video className={`video ${isVideoHovered ? '' : 'video-hover'}`} controls>
-              <source src={video.url} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video> */}
+          <div className='player-wrapper' >
             <ReactPlayer 
-              className=''
+              className='react-player'  
               url={video.url} 
               controls={{
                 playButton: false,
@@ -92,7 +87,6 @@ export default function VideoPage() {
                 volumeSlider: false,
                 fullScreenButton: false,
               }}
-            
             />
             <div className={`ptby ${isVideoHovered ? 'hover' : ''}`}>
               <div className='ptbly-left'>

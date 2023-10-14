@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import VideoUploader from './components/VideoUploader';
 import VideoPage from './components/VideoPage';
 import NotFound from './components/NotFound';
+// import NoVideo from './components/NoVideo';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
 import './App.css';
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route path="/" exact component={VideoUploader} />
         <Route path="/v/:id" component={VideoPage} />
+        {/* <Route path="/v/" component={NoVideo} /> */}
         <Route  component={NotFound} />
       </Switch>
       <Footer />
