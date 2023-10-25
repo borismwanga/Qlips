@@ -2,15 +2,7 @@
   @apply flex flex-col items-center justify-center w-full h-screen;
 }
 .player-wrapper {
-  @apply aspect-video flex justify-center items-center w-[640px] h-[360px] relative rounded-lg border-white border-2 bg-black;
-}
-
-.react-player {
-  /* position: absolute;
-  top: 0;
-  left: 0; */
-  /* @apply border rounded-md bg-black;
-  max-height: calc(100vh - 56px) !important; */
+  @apply flex justify-center items-center w-[640px] h-[360px] relative rounded-lg border-white border-2 bg-black;
 }
 .video{
   @apply w-full h-full border-inherit rounded-lg overflow-hidden;
@@ -27,6 +19,20 @@
 .footer {
   @apply bottom-0 absolute py-4 text-center flex items-center justify-center w-full left-0 gap-5;
 }
-video{
-  @apply md:w-4/5;
+
+@media (max-width: 768px) {
+  .player-wrapper {
+    @apply w-full h-auto border-none rounded-none;
+  }
+  .video{
+    @apply w-full border-inherit rounded-lg overflow-hidden aspect-video;
+
+  }
+  .logo{
+    @apply absolute top-0 left-0 px-3 text-white;
+  }
+  .footer {
+    @apply bottom-0 absolute py-4 text-center flex items-center justify-center w-full left-0 gap-5;
+  }
+  
 }

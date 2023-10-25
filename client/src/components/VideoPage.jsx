@@ -82,7 +82,15 @@ export default function VideoPage() {
                 src={video.url}
                 type="video/mp4" />
               Your browser does not support the video tag.
-            </video>   
+            </video> 
+            {/* <div className='video-info'>
+              <div className="video-title">
+                {video.title}
+              </div>
+              <div className="video-views">
+                {video.views} views
+              </div>
+            </div>   */}
           </div>
       ) : (
         <p>Loading...</p>
