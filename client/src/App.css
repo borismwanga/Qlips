@@ -1,19 +1,28 @@
+.video-page {
+  @apply flex flex-col items-center justify-center w-full h-screen;
+}
 .player-wrapper {
-  position: relative;
+  @apply aspect-video flex justify-center items-center w-[640px] h-[360px] relative rounded-lg border-white border-2 bg-black;
 }
 
 .react-player {
   /* position: absolute;
   top: 0;
   left: 0; */
-  width: 50% ;
+  /* @apply border rounded-md bg-black;
+  max-height: calc(100vh - 56px) !important; */
+}
+.video{
+  @apply w-full h-full border-inherit rounded-lg overflow-hidden;
+  
 }
 .logo{
   font-family: 'Teta Teta Trial', sans-serif;
   @apply absolute top-0 left-0 px-3 text-white;
-  > h1 {
-    @apply text-5xl;
-  }
+
+}
+.logo  h1 {
+  @apply text-5xl;
 }
 .footer {
   @apply bottom-0 absolute py-4 text-center flex items-center justify-center w-full left-0 gap-5;

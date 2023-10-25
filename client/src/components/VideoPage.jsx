@@ -74,53 +74,16 @@ export default function VideoPage() {
   };
 
   return (
-    <div>
+    <div className='video-page'>
       {video ? (
-        <div className={`container ${isVideoHovered ? 'hover' : ''}`}>
           <div className='player-wrapper' >
-            <ReactPlayer 
-              className='react-player'  
-              url={video.url} 
-              controls={{
-                playButton: false,
-                muteButton: false,
-                volumeSlider: false,
-                fullScreenButton: false,
-              }}
-            />
-            <div className={`ptby ${isVideoHovered ? 'hover' : ''}`}>
-              <div className='ptbly-left'>
-                <span className="title">
-                  {video.title}
-                  </span>
-                <span className="info">
-                  {/* <p>
-                    <span className="material-symbols-outlined">
-                      visibility
-                    </span>
-                    {video.viewCount}
-                  </p> */}
-                  
-                  <p>
-                    <span className="material-symbols-outlined">
-                      schedule
-                    </span>
-                      {formatUploadDate(video.uploadDate)}
-                  </p>
-                </span>
-              </div>
-              <div className='ptby-right'>
-                <button onClick={copyToClipboard}> 
-                  <span className="material-symbols-outlined">
-                    link
-                  </span> 
-                  COPY LINK
-                </button>
-              </div>
-              
-            </div>
+            <video controls className='video'>
+              <source 
+                src={video.url}
+                type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>   
           </div>
-        </div>
       ) : (
         <p>Loading...</p>
       )}
